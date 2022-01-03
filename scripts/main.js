@@ -56,19 +56,37 @@ let Fila = table.insertRow(table.length)
 var ListaCompleta = JSON.parse(localStorage.getItem("ArrayUsuarios"));
     console.log(ListaCompleta);
 
-for(var i=1 in ListaCompleta){
-    columna1 = Fila.insertCell(0).innerHTML = ListaCompleta[i].nombre
-    columna2 = Fila.insertCell(1).innerHTML = ListaCompleta[i].aPat
-    columna3 = Fila.insertCell(2).innerHTML = ListaCompleta[i].aMat
-    columna4 = Fila.insertCell(3).innerHTML = ListaCompleta[i].direc
-    columna5 = Fila.insertCell(4).innerHTML = ListaCompleta[i].email
-    columna6 = Fila.insertCell(5).innerHTML = ListaCompleta[i].ciudad
-    columna6 = Fila.insertCell(6).innerHTML = `<input class="submit" type="button" onClick="EditarDatos(this)" value="Editar">
-                                            <input class="submit" type="button" onClick="BorrarDatos(this)" value="Borrar">`
-}
+    var retrievedObject = JSON.parse(localStorage.getItem('ArrayUsuarios'));
+
+    var tbody = document.getElementById("tabla").getElementsByTagName('tbody')[0];
+    
+    for (var i =retrievedObject.length -1 ; i < retrievedObject.length; i++) {
+      var tr = "<tr>";
+      tr += "<td>Name</td>" + "<td>" + retrievedObject[i].nombre + "</td>" + "<td>" + retrievedObject[i].aPat + "</td>" 
+      + "<td>" + retrievedObject[i].aMat + "</td>" + "<td>" + retrievedObject[i].direc + "</td>" + "<td>" + retrievedObject[i].email + "</td>" +
+      "<td>" + retrievedObject[i].ciudad + "</td>" + "</tr>" ;
+      tbody.innerHTML += tr;
+    }
+
+
 
 document.getElementById("nombre").focus
 
+}
+
+function DesplegarTabla(){
+
+    var retrievedObject = JSON.parse(localStorage.getItem('ArrayUsuarios'));
+
+    var tbody = document.getElementById("tabla").getElementsByTagName('tbody')[0];
+    
+    for (var i = 0; i < retrievedObject.length; i++) {
+      var tr = "<tr>";
+      tr += "<td>Name</td>" + "<td>" + retrievedObject[i].nombre + "</td>" + "<td>" + retrievedObject[i].aPat + "</td>" 
+      + "<td>" + retrievedObject[i].aMat + "</td>" + "<td>" + retrievedObject[i].direc + "</td>" + "<td>" + retrievedObject[i].email + "</td>" +
+      "<td>" + retrievedObject[i].ciudad + "</td>" + "</tr>" ;
+      tbody.innerHTML += tr;
+    }
 }
 
 function VaciarDatos(){
